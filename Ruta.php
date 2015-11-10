@@ -18,7 +18,7 @@ class Ruta{
 	}
 
 	public function create(){
-		if($this->kilometraje>0 && $this->descripcion!=""){
+		if($this->kilometraje>0){
 			require_once('DataBase.php');
 			$data = new DataBase();
 			$data->open();

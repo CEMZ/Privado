@@ -9,7 +9,7 @@ head('Administraci&oacute;n de Rutas');
 	<?php
 		if(isset($_POST['btnAddRuta'])){
 		    $nuevo = new Ruta();
-		    $nuevo->set();
+		    $nuevo->set($_POST['txtNombre'],$_POST['txtKilometraje'], $_POST['txtDescripcion']);
 		    if($nuevo->create()){
 		    	vitacora($_SESSION['id'], $_SESSION['user'], "add", $_SERVER['REQUEST_URI'], $_POST['txtNombre'].'.'.$_POST['txtKilometraje'].'.'.
 		    $_POST['txtDescripcion']);

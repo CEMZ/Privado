@@ -202,7 +202,7 @@ function footer($script){
 
 function vitacora($id, $usuario, $accion, $direccion, $datos){
     $file = fopen("Log", "a");
-    fwrite($file, "$id:$usuario > $accion : [$direccion] { $datos }" . PHP_EOL);
+    fwrite($file, "$id:$usuario > $accion : [$direccion] { $datos }". PHP_EOL);
     fclose($file);
 }
 ?>
