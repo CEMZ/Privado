@@ -13,6 +13,10 @@
                 $_POST['txtDireccion'],$_POST['txtCui'],
                 $_POST['txtFecha'],$_POST['selRol']);
                 if($nuevo->create()){
+                  vitacora($_SESSION['id'], $_SESSION['user'], "add", $_SERVER['REQUEST_URI'], $_POST['txtUsuario'].'.'.$_POST['txtContrasena'].'.'.
+                $_POST['txtNombre'].'.'.$_POST['txtTelefono'].'.'.
+                $_POST['txtDireccion'].'.'.$_POST['txtCui'].'.'.
+                $_POST['txtFecha'].'.'.$_POST['selRol']);
                   ?>
                     <div class="alert alert-success" role="alert">
                       <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
@@ -31,6 +35,7 @@
               if(isset($_POST['btnDelUser'])){
                   $eliminar = new Usuario();
                   if($eliminar->delete($_POST['selUser'])){
+                    vitacora($_SESSION['id'], $_SESSION['user'], "delete", $_SERVER['REQUEST_URI'], $_POST['selUser']);
                     ?>
                       <div class="alert alert-success" role="alert">
                         <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
@@ -54,6 +59,10 @@
                 $_POST['txtFecha1'],$_POST['selRol1']);
                 $nuevo->id = $_POST['txtId'];
                 if($nuevo->update()){ 
+                  vitacora($_SESSION['id'], $_SESSION['user'], "update", $_SERVER['REQUEST_URI'], $_POST['txtId'].'.'.$_POST['txtUsuario1'].'.'.$_POST['txtContrasena1'].'.'.
+                $_POST['txtNombre1'].'.'.$_POST['txtTelefono1'].'.'.
+                $_POST['txtDireccion1'].'.'.$_POST['txtCui1'].'.'.
+                $_POST['txtFecha1'].'.'.$_POST['selRol1']);
                   ?>
                     <div class="alert alert-success" role="alert">
                       <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>

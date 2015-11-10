@@ -10,6 +10,8 @@ head('Administracion de Veh&iacute;culos');
         $nuevo->set($_POST['txtPlaca'], $_POST['txtKilometraje'], $_POST['txtSerie'],
               $_POST['txtMotor'], $_POST['txtAnio'], $_POST['txtColor'], $_POST['txtMarca']);
         if($nuevo->create()){
+          vitacora($_SESSION['id'], $_SESSION['user'], "add", $_SERVER['REQUEST_URI'], $_POST['txtPlaca'].'.'.$_POST['txtKilometraje'].'.'.$_POST['txtSerie'].'.'.
+              $_POST['txtMotor'].'.'.$_POST['txtAnio'].'.'.$_POST['txtColor'].'.'.$_POST['txtMarca']);
           ?>
             <div class="alert alert-success" role="alert">
               <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
@@ -28,6 +30,7 @@ head('Administracion de Veh&iacute;culos');
       if(isset($_POST['btnDelVehi'])){
         $eliminar = new Vehiculo();
         if($eliminar->delete($_POST['selVehi'])){
+          vitacora($_SESSION['id'], $_SESSION['user'], "delete", $_SERVER['REQUEST_URI'], $_POST['selVehi']);
           ?>
             <div class="alert alert-success" role="alert">
               <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
@@ -49,6 +52,8 @@ head('Administracion de Veh&iacute;culos');
               $_POST['txtMotor1'], $_POST['txtAnio1'], $_POST['txtColor1'], $_POST['txtMarca1']);
         $nuevo->id = $_POST['txtId'];
         if($nuevo->update()){
+          vitacora($_SESSION['id'], $_SESSION['user'], "update", $_SERVER['REQUEST_URI'], $_POST['txtId'].'.'.$_POST['txtPlaca1'].'.'.$_POST['txtKilometraje1'].'.'.$_POST['txtSerie1'].'.'.
+              $_POST['txtMotor1'].'.'.$_POST['txtAnio1'].'.'.$_POST['txtColor1'].'.'.$_POST['txtMarca1']);
           ?>
             <div class="alert alert-success" role="alert">
               <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>

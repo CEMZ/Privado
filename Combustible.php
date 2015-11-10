@@ -100,9 +100,11 @@ class Combustible{
 		$sql = "BEGIN DELCOMBUSTIBLE(:id); END;";
 		$sent = oci_parse($data->getConn(), $sql);
 		oci_bind_by_name($sent, ':id', $this->id);
-		oci_execute($sent);
+		if(!oci_execute($sent))
+			return false;
 		$data->free($sent);
 		$data->close();
+		return true;
 	}
 
 	public function get($id){

@@ -13,6 +13,10 @@ head('Administraci&oacute;n de Combustible');
                 $_POST['txtFactura'],$_POST['txtProveedor'],
                 $_POST['selVehi']);
                 if($nuevo->create()){
+                	vitacora($_SESSION['id'], $_SESSION['user'], "add", $_SERVER['REQUEST_URI'],$_POST['txtKinicial'].'.'.$_POST['txtCantidad'].'.'.
+                $_POST['txtPrecio'].'.'.$_POST['txtTipo'].'.'.
+                $_POST['txtFactura'].'.'.$_POST['txtProveedor'].'.'.
+                $_POST['selVehi']);
                   ?>
                     <div class="alert alert-success" role="alert">
                       <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
@@ -31,6 +35,7 @@ head('Administraci&oacute;n de Combustible');
               if(isset($_POST['btnDelFuel'])){
                   $eliminar = new Combustible();
                   if($eliminar->delete($_POST['selFuel'])){
+                  	vitacora($_SESSION['id'], $_SESSION['user'], "delete", $_SERVER['REQUEST_URI'], $_POST['selFuel']);
                     ?>
                       <div class="alert alert-success" role="alert">
                         <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
@@ -54,6 +59,10 @@ head('Administraci&oacute;n de Combustible');
                 $_POST['selVehi1']);
                 $nuevo->id = $_POST['txtId'];
                 if($nuevo->update()){ 
+                	vitacora($_SESSION['id'], $_SESSION['user'], "update", $_SERVER['REQUEST_URI'], $_POST['txtId'].'.'.$_POST['txtKinicial1'].'.'.$_POST['txtCantidad1'].'.'.
+                $_POST['txtPrecio1'].'.'.$_POST['txtTipo1'].'.'.
+                $_POST['txtFactura1'].'.'.$_POST['txtProveedor1'].'.'.
+                $_POST['selVehi1']);
                   ?>
                     <div class="alert alert-success" role="alert">
                       <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>

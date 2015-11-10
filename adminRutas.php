@@ -9,9 +9,10 @@ head('Administraci&oacute;n de Rutas');
 	<?php
 		if(isset($_POST['btnAddRuta'])){
 		    $nuevo = new Ruta();
-		    $nuevo->set($_POST['txtNombre'],$_POST['txtKilometraje'],
-		    $_POST['txtDescripcion']);
+		    $nuevo->set();
 		    if($nuevo->create()){
+		    	vitacora($_SESSION['id'], $_SESSION['user'], "add", $_SERVER['REQUEST_URI'], $_POST['txtNombre'].'.'.$_POST['txtKilometraje'].'.'.
+		    $_POST['txtDescripcion']);
 		      ?>
 		        <div class="alert alert-success" role="alert">
 		          <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
@@ -30,6 +31,7 @@ head('Administraci&oacute;n de Rutas');
 	  if(isset($_POST['btnDelRuta'])){
 	      $eliminar = new Ruta();
 	      if($eliminar->delete($_POST['selRuta'])){
+	      	vitacora($_SESSION['id'], $_SESSION['user'], "delete", $_SERVER['REQUEST_URI'], $_POST['selRuta']);
 	        ?>
 	          <div class="alert alert-success" role="alert">
 	            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
@@ -50,6 +52,7 @@ head('Administraci&oacute;n de Rutas');
 	    $upd->set($_POST['txtNombre1'],$_POST['txtKilometraje1'], $_POST['txtDescripcion1']);
 	    $upd->id = $_POST['txtId'];
 	    if($upd->update()){ 
+	    	vitacora($_SESSION['id'], $_SESSION['user'], "update", $_SERVER['REQUEST_URI'], $_POST['txtId'].'.'.$_POST['txtNombre1'].'.'.$_POST['txtKilometraje1'].'.'.$_POST['txtDescripcion1']);
 	      ?>
 	        <div class="alert alert-success" role="alert">
 	          <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
@@ -69,6 +72,7 @@ head('Administraci&oacute;n de Rutas');
 	  	$set = new RutaConductor();
 	  	$set->set($_POST['selRuta'], $_POST['selUser'], 0, "");
 	  	if($set->create()){
+	  		vitacora($_SESSION['id'], $_SESSION['user'], "set", $_SERVER['REQUEST_URI'], $_POST['selRuta'].'.'.$_POST['selUser']);
 	  	?>
 	        <div class="alert alert-success" role="alert">
 		          <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>

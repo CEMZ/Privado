@@ -165,7 +165,7 @@ function head($title){
       <div id="page-content-wrapper">
         <div class="container-fluid">
             <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
-                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span> Men&uacute;
             </a>
 	<?php
 }
@@ -198,5 +198,11 @@ function footer($script){
 </html>
 
 	<?php
+}
+
+function vitacora($id, $usuario, $accion, $direccion, $datos){
+    $file = fopen("Log", "a");
+    fwrite($file, "$id:$usuario > $accion : [$direccion] { $datos }" . PHP_EOL);
+    fclose($file);
 }
 ?>

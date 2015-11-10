@@ -13,6 +13,10 @@ head('Mantenimiento de Veh&iacute;culos');
     $_POST['txtDescripcion'],$_POST['selVehi'],
     $_POST['selTipo']);
     if($nuevo->create()){
+    	vitacora($_SESSION['id'], $_SESSION['user'], "add", $_SERVER['REQUEST_URI'], $_POST['txtFactura'].'.'.$_POST['txtProveedor'].'.'.
+    $_POST['txtFecha'].'.'.$_POST['txtMonto'].'.'.
+    $_POST['txtDescripcion'].'.'.$_POST['selVehi'].'.'.
+    $_POST['selTipo']);
       ?>
         <div class="alert alert-success" role="alert">
           <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
@@ -31,6 +35,7 @@ head('Mantenimiento de Veh&iacute;culos');
   if(isset($_POST['btnDelMain'])){
       $eliminar = new Mantenimiento();
       if($eliminar->delete($_POST['selMain'])){
+      	vitacora($_SESSION['id'], $_SESSION['user'], "delete", $_SERVER['REQUEST_URI'], $_POST['selMain']);
         ?>
           <div class="alert alert-success" role="alert">
             <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
@@ -54,6 +59,10 @@ head('Mantenimiento de Veh&iacute;culos');
     $_POST['selTipo1']);
     $nuevo->id = $_POST['txtId'];
     if($nuevo->update()){ 
+    	vitacora($_SESSION['id'], $_SESSION['user'], "update", $_SERVER['REQUEST_URI'], $_POST['txtId'].'.'.$_POST['txtFactura1'].'.'.$_POST['txtProveedor1'].'.'.
+    $_POST['txtFecha1'].'.'.$_POST['txtMonto1'].'.'.
+    $_POST['txtDescripcion1'].'.'.$_POST['selVehi1'].'.'.
+    $_POST['selTipo1']);
       ?>
         <div class="alert alert-success" role="alert">
           <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>

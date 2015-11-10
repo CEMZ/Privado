@@ -10,8 +10,9 @@ head('Mis rutas');
 		if(isset($_POST['btnUpdate'])){
 			$update = new RutaConductor();
 			$update->set($_POST['txtRuta'], $_SESSION['id'], $_POST['txtKilometraje'], $_POST['txtDescripcion']);
-			$update->id = $_POST['txtId'];
+			$update->id = ;
 			if($update->update()){
+				vitacora($_SESSION['id'], $_SESSION['user'], "update", $_SERVER['REQUEST_URI'], $_POST['txtRuta'].'.'.$_POST['txtId'].'.'.$_SESSION['id'].'.'.$_POST['txtKilometraje'].'.'.$_POST['txtDescripcion']);
 				?>
 		        <div class="alert alert-success" role="alert">
 		          <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
