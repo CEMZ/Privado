@@ -1,37 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
-
-  <!-- CSS de Bootstrap -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <link href="css/signin.css" rel="stylesheet">
-
-  <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
-</head>
-<body>
-  <div class="container">
-
-    <form class="form-signin" method="post" action="">
-      <h2 class="form-signin-heading">Iniciar Sesi&oacute;n</h2>
-      <label for="inputEmail" class="sr-only">Usuario</label>
-      <input type="email" id="inputUsuario" class="form-control" placeholder="Usuario" required autofocus>
-      <label for="inputPassword" class="sr-only">Contrase&ntilde;a</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Contrasena" required>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-    </form>
-
-  </div> <!-- /container -->
-
-
-  <!-- Librería jQuery requerida por los plugins de JavaScript -->
-  <script src="js/jquery.js"></script>
-
-  <!-- Todos los plugins JavaScript de Bootstrap (también puedes
-       incluir archivos JavaScript individuales de los únicos
-       plugins que utilices) -->
-  <script src="js/bootstrap.min.js"></script>
-</body>
-</html>
+<?php
+	$username = $_POST['user'];
+	$password = $_POST['pass'];
+	$rol = 0;
+	require_once('DataBase.php');
+	$data = new DataBase();
+	$data -> open();
+	$id = 0;
+	$sql = "BEGIN LOGIN(:user, :pass, :rol, :id); END;";
+	$sent = oci_parse($data->getConn(), $sql);
+	oci_bind_by_name($sent, ':user', $username);
+	oci_bind_by_name($sent, ':pass', $password);
+	oci_bind_by_name($sent, ':rol', $rol);
+	oci_bind_by_name($sent, ':id', $id);
+	oci_execute($sent);
+	$data->free($sent);
+	$data->close();
+	if($rol > 0 && $id > 0){
+		session_start();
+		$_SESSION['id'] = $id;
+		$_SESSION['user'] = $username;
+		$_SESSION['rol'] = $rol;
+		header('Location: index.php');
+	} else {
+		header('Location: loginform.php?error=1');
+	}
+?>
