@@ -6,16 +6,18 @@ Aspectos Técnicos:
 
 PC:
 
-Lenguajes:
 
-PHP
-JavaScript
-CSS3
-HTML5
-PL/SQL
+Lenguajes:
+- PHP
+- JavaScript
+- CSS3
+- HTML5
+- PL/SQL
+
 Base de Datos
 
-Oracle 11g XE
+- Oracle 11g XE
+
 Descripción de la arquitectura: El proyecto fue montando sobre una computadora física que utiliza como motor de 
 virtualización VMWare WorkStation 11, se instalaron 2 máquinas virtuales, cada una con la distribución de 
 Linux Mint 17.1 Rebecca, en uno de los servidores se ha instalado El servidor de bases de datos mientras que en 
